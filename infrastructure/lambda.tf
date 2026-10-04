@@ -1,8 +1,10 @@
 resource "aws_lambda_function" "api_lambda" {
   function_name = "batman-api-handler"
   role          = aws_iam_role.api_lambda_role.arn
-  handler       = "Batman.Api::Batman.Api.Function::FunctionHandler"
-  runtime       = "dotnet10"
+  # ⚠️ CHANGE: Use provided.al2023, NOT dotnet10
+  runtime       = "provided.al2023" 
+  # ⚠️ CHANGE: Handler is "bootstrap" for custom runtime
+  handler       = "bootstrap"       
   timeout       = 30
   memory_size   = 256
 
@@ -16,17 +18,15 @@ resource "aws_lambda_function" "api_lambda" {
   }
 
   publish = true
-
-  tags = {
-    Project = "BATMAN-CDC"
-  }
 }
 
 resource "aws_lambda_function" "stream_processor" {
   function_name = "batman-stream-processor"
   role          = aws_iam_role.stream_lambda_role.arn
-  handler       = "Batman.StreamProcessor::Batman.StreamProcessor.Function::FunctionHandler"
-  runtime       = "dotnet10"
+  # ⚠️ CHANGE: Use provided.al2023
+  runtime       = "provided.al2023"
+  # ⚠️ CHANGE: Handler is "bootstrap"
+  handler       = "bootstrap"
   timeout       = 60
   memory_size   = 512
 
@@ -34,8 +34,4 @@ resource "aws_lambda_function" "stream_processor" {
   s3_key    = var.stream_artifact_key
 
   publish = true
-
-  tags = {
-    Project = "BATMAN-CDC"
-  }
 }

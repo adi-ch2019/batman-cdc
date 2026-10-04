@@ -1,3 +1,4 @@
+
 using Amazon.Lambda.Core;
 using Amazon.Lambda.DynamoDBEvents;
 
@@ -28,9 +29,10 @@ public class Function
                     $"Failed record {record.Dynamodb.SequenceNumber}: {ex.Message}");
                 
                 // Report ONLY this record as failed
-                batchItemFailures.Add(
-                    new StreamsEventResponse.BatchItemFailure(
-                        record.Dynamodb.SequenceNumber));
+                batchItemFailures.Add(new StreamsEventResponse.BatchItemFailure
+{
+    ItemIdentifier = record.Dynamodb.SequenceNumber
+});
             }
         }
 
