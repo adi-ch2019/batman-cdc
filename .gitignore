@@ -1,0 +1,127 @@
+# ============================================================
+# BATMAN CDC - Monorepo .gitignore
+# ============================================================
+
+# --------------------
+# .NET (Batman.Api, Batman.StreamProcessor)
+# --------------------
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.userprefs
+project.lock.json
+project.fragment.lock.json
+artifacts/
+.vs/
+*.nupkg
+*.snupkg
+*.nuget.props
+*.nuget.targets
+
+# .NET build output for Lambda packaging
+publish/
+*.zip
+!infrastructure/**/*.zip
+
+# --------------------
+# Node / Angular (batman-ui)
+# --------------------
+node_modules/
+dist/
+tmp/
+out-tsc/
+bazel-out/
+.angular/
+.cache/
+.parcel-cache/
+
+# Angular build artifacts
+/src/batman-ui/dist/
+/src/batman-ui/.angular/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# --------------------
+# Terraform
+# --------------------
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+crash.log
+crash.*.log
+*.tfvars
+*.tfvars.json
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraformrc
+terraform.rc
+.terraform.lock.hcl
+
+# Terraform plan files (contain sensitive values)
+*.tfplan
+tfplan
+
+# --------------------
+# AWS / Secrets
+# --------------------
+.aws/
+credentials
+*.pem
+*.key
+.env
+.env.local
+.env.*.local
+secrets.json
+appsettings.Development.json
+
+# --------------------
+# IDE / Editor
+# --------------------
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/launch.json
+!.vscode/tasks.json
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# --------------------
+# Testing / Coverage
+# --------------------
+coverage/
+*.coverage
+*.coveragexml
+TestResults/
+[Tt]est[Rr]esult*/
+*.trx
+.nyc_output/
+
+# --------------------
+# Build Artifacts (project-specific)
+# --------------------
+/artifacts/
+!/artifacts/.gitkeep
+
+# --------------------
+# Misc
+# --------------------
+*.log
+*.tmp
+*.bak
+*.orig
